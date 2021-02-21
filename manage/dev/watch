@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -e
+
+YELLOW="\033[1;33m"
+BLUE="\033[1;34m"
+RESET="\033[1;m"
+
+# PATH is not available after the pipe
+JAVAC=$(which javac)
+
+function timestamp() {
+  /bin/date --rfc-333=seconds
+}
+
+echo -e "Using java compiler: ${BLUE}$($JAVAC --version)${RESET}"
+
+# shellcheck disable=SC2046
+if [ ! $(which inotifywait) ]; then
+  APT_GET_INSTALL="${YELLOW}apt-get install inotify-tools${RESET}"
+  echo -e "Install inotifywait with: $APT_GET_INSTALL"
+  exit 1
+fi
+
+# shellcheck disable=SC2162
+inotifywait --recursive --quiet --monitor --event close_write ./src/main/java |
+  while read DIR _ FILENAME; do
+    if [[ $FILENAME != *.java ]]; then
+      continue
+    fi
+
+    PATH="${DIR}${FILENAME}"
+    echo "[$(timestamp)] javac $PATH"
+
+    $JAVAC "$PATH"
+  done

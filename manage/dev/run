@@ -1,0 +1,13 @@
+#!/bin/bash
+
+YELLOW="\033[1;33m"
+RESET="\033[1;m"
+
+# shellcheck disable=SC2046
+if [ ! $(which groovyclient) ]; then
+  GROOVYSERV_INSTALL="${YELLOW}sdk install groovyserv${RESET}"
+  echo -e "Install groovyclient/groovyserv with: $GROOVYSERV_INSTALL"
+  exit 1
+fi
+
+groovyclient -cp ./src/main/java/ ./src/main/groovy/snappy/dev/env/App.groovy
