@@ -1,3 +1,11 @@
+## Quick setup
+
+    degit benjamin-thomas/java-snappy-dev-env
+
+Then go to: [How to use](#how-to-use)
+
+---
+
 ## Preamble
 
 Run and test java code in **milliseconds**.
