@@ -35,10 +35,10 @@ echo "[$(timestamp)] Generating *.class files on first run"
 JAVA_SRC="./src/main/java"
 
 # Most performant version
-# find $JAVA_SRC -name "*.java" -print0 | xargs -0 javac
+# find $JAVA_SRC -name "*.java" -print0 | xargs -0 javac -cp $JAVA_SRC
 
 # Let's see if the better visibility is worth it
-find $JAVA_SRC -name "*.java" -print0 | xargs -0 -n1 --verbose javac
+find $JAVA_SRC -name "*.java" -print0 | xargs -0 -n1 --verbose javac -cp $JAVA_SRC
 
 echo "[$(timestamp)] Now starting the watch process"
 # shellcheck disable=SC2162
@@ -49,7 +49,7 @@ inotifywait --recursive --quiet --monitor --event close_write $JAVA_SRC  |
     fi
 
     PATH="${DIR}${FILENAME}"
-    echo "[$(timestamp)] javac $PATH"
+    echo "[$(timestamp)] javac -cp $JAVA_SRC $PATH"
 
-    $JAVAC "$PATH"
+    $JAVAC -cp $JAVA_SRC "$PATH"
   done
