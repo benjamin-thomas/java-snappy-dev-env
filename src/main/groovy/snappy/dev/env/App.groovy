@@ -2,7 +2,8 @@ package snappy.dev.env
 
 public class App {
     public String getGreeting() {
-        return "Hello world.";
+        Greeter greet = new Greeter();
+        return greet.sayHello();
     }
 
     public static void main(String[] args) {

@@ -13,7 +13,11 @@ function timestamp() {
   /bin/date --rfc-333=seconds
 }
 
-echo -e "Using java compiler: ${BLUE}$($JAVAC --version)${RESET}"
+# NOTE: command line options inconsistencies
+#  - java 8: -version
+#  - java 11: --version
+JAVA_VERSION=$($JAVAC -version 2>&1)
+echo -e "Using java compiler: ${BLUE}${JAVA_VERSION}${RESET}"
 
 # shellcheck disable=SC2046
 if [ ! $(which inotifywait) ]; then
@@ -22,8 +26,23 @@ if [ ! $(which inotifywait) ]; then
   exit 1
 fi
 
+
+echo "[$(timestamp)] Killing previous groovyserv daemon"
+groovyserver -k
+
+echo "[$(timestamp)] Generating *.class files on first run"
+
+JAVA_SRC="./src/main/java"
+
+# Most performant version
+# find $JAVA_SRC -name "*.java" -print0 | xargs -0 javac
+
+# Let's see if the better visibility is worth it
+find $JAVA_SRC -name "*.java" -print0 | xargs -0 -n1 --verbose javac
+
+echo "[$(timestamp)] Now starting the watch process"
 # shellcheck disable=SC2162
-inotifywait --recursive --quiet --monitor --event close_write ./src/main/java |
+inotifywait --recursive --quiet --monitor --event close_write $JAVA_SRC  |
   while read DIR _ FILENAME; do
     if [[ $FILENAME != *.java ]]; then
       continue

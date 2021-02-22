@@ -3,3 +3,9 @@
 
 # Ignore Gradle build output directory
 build
+
+# Test jars required by groovyclient
+/vendor
+
+# Continuous compilation
+/src/**/*.class
