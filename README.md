@@ -47,7 +47,7 @@ So trying to switch to Java 11 does not seem worth the effort.
 
 ## How to use
 
-Start or restart the launcher when adding new classes
+Start or restart the watcher when adding new classes
 
     - ./gradlew vendorTestJars
     - ./manage/dev/watch
