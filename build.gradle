@@ -44,5 +44,5 @@ application {
 
 task vendorTestJars(type: Copy) {
     into "vendor"
-    from configurations.vendorTesting - configurations.runtime
+    from configurations.vendorTesting - configurations.runtimeClasspath
 }
