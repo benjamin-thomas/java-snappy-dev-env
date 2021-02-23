@@ -1,6 +1,8 @@
 ## Quick setup
 
+    cd myproj
     degit benjamin-thomas/java-snappy-dev-env
+    sdk env
 
 Then go to: [How to use](#how-to-use)
 
@@ -12,24 +14,23 @@ Run and test java code in **milliseconds**.
 
 This works by leveraging a very cool project: [GroovyServ](https://kobo.github.io/groovyserv/quickstart.html).
 
-And using `Groovy` as an entrypoint for `Java` focused development, coupled with a continuous compilation process 
+And using `Groovy` as an entrypoint for `Java` focused development, coupled with a continuous compilation process
 via a file watcher.
 
-For the moment, I "pollute" the file hierarchy with compiled `*.class` files in place. A minor nuisance 
-counterbalanced by the fact that it makes the continuous compilation process more obvious and "in your face". Git 
+For the moment, I "pollute" the file hierarchy with compiled `*.class` files in place. A minor nuisance
+counterbalanced by the fact that it makes the continuous compilation process more obvious and "in your face". Git
 ignoring them seems to be sufficient for now.
 
 ---
 
 ## Requirements
 
-Linux only for now. MacOS could work easily but would need a custom file watcher. 
+Linux only for now. MacOS could work easily but would need a custom file watcher.
 
 ### Make sure both groovy versions match
 
 - ./gradlew --version
 - groovy --version
-
 
 ### Use Java 8
 
