@@ -27,10 +27,15 @@ ignoring them seems to be sufficient for now.
 
 Linux only for now. MacOS could work easily but would need a custom file watcher.
 
+Also uses the following tools:
+
+- sdkman
+- apt install entr
+
 ### Make sure both groovy versions match
 
 - ./gradlew --version
-- groovy --version
+- groovy --version (adapt `.sdkmanrc` to match the gradle file)
 
 ### Use Java 8
 
