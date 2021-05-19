@@ -78,4 +78,4 @@ Or run some tests
 Better yet, to focus on a single test use this:
 
     sdk env
-    find src/ -name *.java -o -name *.groovy | entr -c ./manage/dev/test-run
+    find src/ -name *.class -o -name *.groovy | entr -c ./manage/dev/test-run
