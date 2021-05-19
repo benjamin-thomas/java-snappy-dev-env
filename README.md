@@ -34,11 +34,15 @@ Also uses the following tools:
 
 ### Make sure both groovy versions match
 
-- ./gradlew --version
-- groovy --version (adapt `.sdkmanrc` to match the gradle file)
+Make sure `sdk env` is run in every shell, and prior to this check!
+
+    sdk env
+    ./gradlew --version
+    groovy --version
 
 ### Use Java 8
 
+    sdk env
     java -version
 
 Java 11 would work easily with minute tweaks.
@@ -55,19 +59,23 @@ So trying to switch to Java 11 does not seem worth the effort.
 
 Start or restart the watcher when adding new classes
 
-    - ./gradlew vendorTestJars
-    - ./manage/dev/watch
+    sdk env
+    ./gradlew vendorTestJars
+    ./manage/dev/watch
 
 Then run the app
 
+    sdk env
     ./manage/dev/run
 
 Or run some tests
 
+    sdk env
     ./manage/dev/test-run ./src/test/groovy/snappy/dev/env/AppTest.groovy
     
 ---
 
 Better yet, to focus on a single test use this:
 
+    sdk env
     find src/ -name *.java -o -name *.groovy | entr ./manage/dev/test-run
