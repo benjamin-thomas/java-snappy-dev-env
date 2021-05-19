@@ -60,3 +60,9 @@ Then run the app
 Or run some tests
 
     ./manage/dev/test-run ./src/test/groovy/snappy/dev/env/AppTest.groovy
+    
+---
+
+Better yet, to focus on a single test use this:
+
+    find src/ -name *.java -o -name *.groovy | entr ./manage/dev/test-run
