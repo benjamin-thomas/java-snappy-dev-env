@@ -10,6 +10,8 @@ if [ ! $(which groovyclient) ]; then
   exit 1
 fi
 
-groovyclient \
+# Executing doesn't do much for what I want: grab an non zero exit code
+# So I'm using a wrapper to colorize the output for now
+exec groovyclient \
 -cp vendor/spock-core-1.3-groovy-2.5.jar:src/main/groovy/:src/main/java/ \
 ./src/test/groovy/snappy/dev/env/AppTest.groovy

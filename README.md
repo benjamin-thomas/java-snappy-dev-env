@@ -51,7 +51,7 @@ But Groovy 2x with Java 11 prints annoying illegal reflection access warnings.
 
 Also, spock framework's groovy 3 support is too recent and breaks the default `gradlew test` task.
 
-So trying to switch to Java 11 does not seem worth the effort.
+So trying to switch to Java 11 does not seem worth the effort for the time being.
 
 ---
 
@@ -79,3 +79,4 @@ Better yet, to focus on a single test use this:
 
     sdk env
     find src/ -name *.class -o -name *.groovy | entr -c ./manage/dev/test-run
+    find src/ -name *.class -o -name *.groovy | entr -c ./manage/dev/test-run-wrapper # colorized output
