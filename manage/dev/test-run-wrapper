@@ -6,10 +6,12 @@ require 'rainbow'
 out = Rainbow(`./manage/dev/test-run`)
 
 if out.include?('Test Failure:') # I couldn't find a way to grab a non zero exit code from the test runner
-  puts(out.red)
+  print(out.red)
+  print(Time.now)
   system('tmux set -q status-left-bg red') if ENV['TMUX']
   return
 end
 
-puts out.green.bold
+puts(out.green.bold)
+print(Time.now)
 system('tmux set -q status-left-bg green') if ENV['TMUX']
